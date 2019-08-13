@@ -3,10 +3,9 @@ package com.analyzer.approachHelper.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
-public class Product {
+public class Approach {
 
     @Id
     @GeneratedValue(generator = "UUID", strategy = GenerationType.AUTO)
@@ -14,25 +13,37 @@ public class Product {
     @Column(columnDefinition = "CHAR(36)")
     private String id;
 
-    @OneToMany(mappedBy = "product")
-    private Set<Approach> approaches;
+    private String code;
 
-    public Product() {
-        //empty constructor
+    @ManyToOne
+    private Product product;
+
+    public Approach() {
     }
 
-    public Product(String id) {
-        this.id = id;
+    public Approach(String code, Product product) {
+        this.code = code;
+        this.product = product;
     }
 
     public String getId() {
         return id;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
     @Override
     public String toString() {
-        return "Product{" +
+        return "Approach{" +
                 "id='" + id + '\'' +
+                ", code='" + code + '\'' +
+                ", product=" + product +
                 '}';
     }
 }
