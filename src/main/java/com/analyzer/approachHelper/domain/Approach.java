@@ -19,6 +19,7 @@ public class Approach {
     private Product product;
 
     public Approach() {
+        //empty constructor
     }
 
     public Approach(String code, Product product) {

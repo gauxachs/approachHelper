@@ -17,22 +17,29 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<Approach> approaches;
 
+    private String description;
+
     public Product() {
         //empty constructor
     }
 
-    public Product(String id) {
-        this.id = id;
+    public Product(String description) {
+        this.description = description;
     }
 
     public String getId() {
         return id;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
-                "id='" + id + '\'' +
+                ", description='" + description + '\'' +
+                ", approaches=" + approaches +
                 '}';
     }
 }

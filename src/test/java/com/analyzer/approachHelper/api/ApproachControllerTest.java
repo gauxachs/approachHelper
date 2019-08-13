@@ -14,6 +14,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -27,6 +28,7 @@ public class ApproachControllerTest {
 
     private static final String PRODUCT_ID = "PRODUCT_ID";
     private static final String CODE = "CODE";
+    private static final String DESCRIPTION = "DESCRIPTION";
 
     @Autowired
     private MockMvc mvc;
@@ -36,7 +38,9 @@ public class ApproachControllerTest {
 
     @Before
     public void setUp() {
-        var product = new Product(PRODUCT_ID);
+        var product = mock(Product.class);
+        when(product.getId()).thenReturn(PRODUCT_ID);
+        when(product.getDescription()).thenReturn(DESCRIPTION);
         var approach = new Approach(CODE, product);
 
         when(approachService.getApproachByProductId(PRODUCT_ID)).thenReturn(approach);

@@ -13,12 +13,14 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ProductServiceImplTest {
 
     private static final String PRODUCT_ID = "PRODUCT_ID";
+    private static final String DESCRIPTION = "DESCRIPTION";
 
     @InjectMocks
     private ProductServiceImpl productService;
@@ -28,12 +30,15 @@ public class ProductServiceImplTest {
 
     @Test
     public void testGetProduct() {
-        var product = new Product(PRODUCT_ID);
+        var product = mock(Product.class);
+        when(product.getId()).thenReturn(PRODUCT_ID);
+        when(product.getDescription()).thenReturn(DESCRIPTION);
         when(productRepository.findById(eq(PRODUCT_ID))).thenReturn(Optional.of(product));
 
         var productFound = productService.getProduct(PRODUCT_ID);
 
         assertThat(productFound.getId()).isEqualTo(PRODUCT_ID);
+        assertThat(productFound.getDescription()).isEqualTo(DESCRIPTION);
     }
 
     @Test(expected = ProductNotFoundException.class)

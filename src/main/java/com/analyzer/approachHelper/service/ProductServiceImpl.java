@@ -19,4 +19,9 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(String.format("Product not found - product ID: %s)", id)));
     }
+
+    @Override
+    public Product createProduct(String description) {
+        return productRepository.save(new Product(description));
+    }
 }

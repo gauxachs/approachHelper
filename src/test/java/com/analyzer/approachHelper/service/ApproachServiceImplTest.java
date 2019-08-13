@@ -21,6 +21,7 @@ public class ApproachServiceImplTest {
 
     private static final String PRODUCT_ID = "PRODUCT_ID";
     private static final String APPROACH_CODE = "CODE";
+    private static final String DESCRIPTION = "DESCRIPTION";
 
     @InjectMocks
     private ApproachServiceImpl approachService;
@@ -30,13 +31,13 @@ public class ApproachServiceImplTest {
 
     @Test
     public void testGetApproachByProductId() {
-        var product = new Product(PRODUCT_ID);
+        var product = new Product(DESCRIPTION);
         var approach = new Approach(APPROACH_CODE, product);
         when(approachRepository.findByProductId(eq(PRODUCT_ID))).thenReturn(Optional.of(approach));
 
         var approachFound = approachService.getApproachByProductId(PRODUCT_ID);
 
-        assertThat(approachFound.getProduct().getId()).isEqualTo(PRODUCT_ID);
+        assertThat(approachFound.getProduct().getDescription()).isEqualTo(DESCRIPTION);
     }
 
     @Test(expected = ApproachNotFoundException.class)
