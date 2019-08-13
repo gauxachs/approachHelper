@@ -3,7 +3,6 @@ package com.analyzer.approachHelper.api;
 import com.analyzer.approachHelper.dto.CreateProductRequest;
 import com.analyzer.approachHelper.dto.ProductResponse;
 import com.analyzer.approachHelper.service.ProductService;
-import org.springframework.data.projection.ProjectionFactory;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,8 +10,6 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     private ProductService productService;
-
-    private ProjectionFactory projectionFactory;
 
     public ProductController(ProductService productService) {
         this.productService = productService;

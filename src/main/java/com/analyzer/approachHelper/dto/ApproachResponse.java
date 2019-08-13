@@ -1,12 +1,17 @@
 package com.analyzer.approachHelper.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ApproachResponse {
 
     private String productId;
 
     private String code;
 
-    public ApproachResponse(String productId, String code) {
+    @JsonCreator
+    public ApproachResponse(@JsonProperty("productId") String productId,
+                            @JsonProperty("code") String code) {
         this.productId = productId;
         this.code = code;
     }

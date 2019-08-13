@@ -12,9 +12,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.Optional;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ProductServiceImplTest {
@@ -44,5 +44,17 @@ public class ProductServiceImplTest {
     @Test(expected = ProductNotFoundException.class)
     public void testProductNotFoundException() {
         productService.getProduct(PRODUCT_ID);
+    }
+
+    @Test
+    public void testCreateProduct() {
+        var product = mock(Product.class);
+        when(product.getDescription()).thenReturn(DESCRIPTION);
+        when(productRepository.save(any(Product.class))).thenReturn(product);
+
+        var productSaved = productService.createProduct(DESCRIPTION);
+
+        assertThat(productSaved.getDescription()).isEqualTo(DESCRIPTION);
+        verify(productRepository).save(any(Product.class));
     }
 }
