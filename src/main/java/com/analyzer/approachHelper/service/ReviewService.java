@@ -2,7 +2,9 @@ package com.analyzer.approachHelper.service;
 
 import com.analyzer.approachHelper.domain.Review;
 
+import java.util.List;
+
 public interface ReviewService {
 
-    Review getReviewByProductId(String productId);
+    List<Review> getReviewsByProductId(String productId);
 }

@@ -1,9 +1,10 @@
 package com.analyzer.approachHelper.service;
 
 import com.analyzer.approachHelper.domain.Review;
-import com.analyzer.approachHelper.exception.ReviewNotFoundException;
 import com.analyzer.approachHelper.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
@@ -15,8 +16,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Review getReviewByProductId(String productId) {
-        return reviewRepository.findByProductId(productId)
-                .orElseThrow(() -> new ReviewNotFoundException("Review for this product doesn't exists"));
+    public List<Review> getReviewsByProductId(String productId) {
+        return reviewRepository.findByProductId(productId);
     }
 }
