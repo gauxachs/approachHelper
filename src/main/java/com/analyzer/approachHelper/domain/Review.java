@@ -5,7 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-public class Approach {
+public class Review {
 
     @Id
     @GeneratedValue(generator = "UUID", strategy = GenerationType.AUTO)
@@ -13,17 +13,17 @@ public class Approach {
     @Column(columnDefinition = "CHAR(36)")
     private String id;
 
-    private String code;
+    private String score;
 
     @ManyToOne
     private Product product;
 
-    public Approach() {
+    public Review() {
         //empty constructor
     }
 
-    public Approach(String code, Product product) {
-        this.code = code;
+    public Review(String score, Product product) {
+        this.score = score;
         this.product = product;
     }
 
@@ -31,12 +31,11 @@ public class Approach {
         return id;
     }
 
-    public String getCode() {
-        return code;
+    public String getScore() {
+        return score;
     }
 
     public Product getProduct() {
         return product;
     }
-
 }

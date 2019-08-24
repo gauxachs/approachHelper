@@ -24,11 +24,4 @@ public class ProductResponse {
         return description;
     }
 
-    @Override
-    public String toString() {
-        return "ProductResponse{" +
-                "id='" + id + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }

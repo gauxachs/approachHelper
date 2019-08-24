@@ -17,6 +17,9 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<Approach> approaches;
 
+    @OneToMany(mappedBy = "product")
+    private Set<Review> reviews;
+
     private String description;
 
     public Product() {
@@ -35,11 +38,11 @@ public class Product {
         return description;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                ", description='" + description + '\'' +
-                ", approaches=" + approaches +
-                '}';
+    public Set<Approach> getApproaches() {
+        return approaches;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
     }
 }

@@ -24,11 +24,4 @@ public class ApproachResponse {
         return code;
     }
 
-    @Override
-    public String toString() {
-        return "ApproachResponse{" +
-                "productId='" + productId + '\'' +
-                ", code='" + code + '\'' +
-                '}';
-    }
 }

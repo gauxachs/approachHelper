@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/approach")
+@RequestMapping("/approaches")
 public class ApproachController {
 
     private ApproachService approachService;
