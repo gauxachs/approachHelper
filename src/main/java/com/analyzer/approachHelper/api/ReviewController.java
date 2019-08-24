@@ -1,10 +1,9 @@
 package com.analyzer.approachHelper.api;
 
+import com.analyzer.approachHelper.dto.ReviewRequest;
 import com.analyzer.approachHelper.dto.ReviewResponse;
-import com.analyzer.approachHelper.service.ReviewService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.analyzer.approachHelper.service.review.ReviewService;
+import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
@@ -28,5 +27,16 @@ public class ReviewController {
         return reviews.stream()
                 .map(review -> new ReviewResponse(review.getProduct().getId(), review.getScore(), review.getDate()))
                 .collect(toList());
+    }
+
+    @PostMapping
+    public ReviewResponse createReview(@RequestBody ReviewRequest reviewRequest) {
+        var review = reviewService.createReview(reviewRequest.getProductId());
+
+        var productId = review.getProduct().getId();
+        var score = review.getScore();
+        var date = review.getDate();
+
+        return new ReviewResponse(productId, score, date);
     }
 }

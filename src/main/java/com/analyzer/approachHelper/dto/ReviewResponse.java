@@ -7,19 +7,16 @@ import java.time.LocalDateTime;
 
 public class ReviewResponse {
 
-    @JsonProperty("productId")
     private String productId;
 
-    @JsonProperty("score")
     private String score;
 
-    @JsonProperty("date")
     private LocalDateTime date;
 
     @JsonCreator
-    public ReviewResponse(String productId,
-                          String score,
-                          LocalDateTime date) {
+    public ReviewResponse(@JsonProperty("productId") String productId,
+                          @JsonProperty("score") String score,
+                          @JsonProperty("date") LocalDateTime date) {
         this.productId = productId;
         this.score = score;
         this.date = date;
@@ -33,7 +30,7 @@ public class ReviewResponse {
         return score;
     }
 
-    public LocalDateTime getLocalDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 }

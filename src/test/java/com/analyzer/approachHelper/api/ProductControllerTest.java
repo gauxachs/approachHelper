@@ -2,7 +2,7 @@ package com.analyzer.approachHelper.api;
 
 import com.analyzer.approachHelper.domain.Product;
 import com.analyzer.approachHelper.dto.CreateProductRequest;
-import com.analyzer.approachHelper.service.ProductService;
+import com.analyzer.approachHelper.service.product.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;

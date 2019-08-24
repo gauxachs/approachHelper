@@ -1,7 +1,7 @@
 package com.analyzer.approachHelper.api;
 
 import com.analyzer.approachHelper.dto.ApproachResponse;
-import com.analyzer.approachHelper.service.ApproachService;
+import com.analyzer.approachHelper.service.approach.ApproachService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

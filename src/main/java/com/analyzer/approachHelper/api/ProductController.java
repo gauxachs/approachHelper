@@ -2,7 +2,7 @@ package com.analyzer.approachHelper.api;
 
 import com.analyzer.approachHelper.dto.CreateProductRequest;
 import com.analyzer.approachHelper.dto.ProductResponse;
-import com.analyzer.approachHelper.service.ProductService;
+import com.analyzer.approachHelper.service.product.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

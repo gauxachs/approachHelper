@@ -1,4 +1,4 @@
-package com.analyzer.approachHelper.service;
+package com.analyzer.approachHelper.service.product;
 
 import com.analyzer.approachHelper.domain.Product;
 

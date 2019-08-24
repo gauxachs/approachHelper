@@ -1,9 +1,10 @@
-package com.analyzer.approachHelper.service;
+package com.analyzer.approachHelper.service.approach;
 
 import com.analyzer.approachHelper.domain.Approach;
 import com.analyzer.approachHelper.domain.Product;
 import com.analyzer.approachHelper.exception.ApproachNotFoundException;
 import com.analyzer.approachHelper.repository.ApproachRepository;
+import com.analyzer.approachHelper.service.approach.ApproachServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

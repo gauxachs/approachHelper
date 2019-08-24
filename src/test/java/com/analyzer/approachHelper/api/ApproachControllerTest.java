@@ -2,7 +2,7 @@ package com.analyzer.approachHelper.api;
 
 import com.analyzer.approachHelper.domain.Approach;
 import com.analyzer.approachHelper.domain.Product;
-import com.analyzer.approachHelper.service.ApproachService;
+import com.analyzer.approachHelper.service.approach.ApproachService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

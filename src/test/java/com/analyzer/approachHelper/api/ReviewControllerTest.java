@@ -2,7 +2,9 @@ package com.analyzer.approachHelper.api;
 
 import com.analyzer.approachHelper.domain.Product;
 import com.analyzer.approachHelper.domain.Review;
-import com.analyzer.approachHelper.service.ReviewService;
+import com.analyzer.approachHelper.dto.ReviewRequest;
+import com.analyzer.approachHelper.service.review.ReviewService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +22,7 @@ import java.time.LocalDateTime;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,6 +39,9 @@ public class ReviewControllerTest {
     @Autowired
     private MockMvc mvc;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @MockBean
     private ReviewService reviewService;
 
@@ -51,6 +56,7 @@ public class ReviewControllerTest {
         when(review.getProduct()).thenReturn(product);
 
         when(reviewService.getReviewsByProductId(PRODUCT_ID)).thenReturn(Lists.newArrayList(review));
+        when(reviewService.createReview(PRODUCT_ID)).thenReturn(review);
     }
 
     @Test
@@ -64,10 +70,21 @@ public class ReviewControllerTest {
     public void testGetReviewsByProductId() throws Exception {
         mvc.perform(get("/reviews")
                 .param("productId", PRODUCT_ID))
-                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("[0].score").value(SCORE))
                 .andExpect(jsonPath("[0].date").value(REVIEW_DATE.toString()));
+    }
 
+    @Test
+    public void testCreateProductReview() throws Exception {
+        var reviewRequest = new ReviewRequest(PRODUCT_ID);
+
+        var body = objectMapper.writeValueAsString(reviewRequest);
+
+        mvc.perform(post("/reviews")
+                .contentType("application/json")
+                .content(body))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("score").exists());
     }
 }

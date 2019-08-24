@@ -1,4 +1,4 @@
-package com.analyzer.approachHelper.service;
+package com.analyzer.approachHelper.service.approach;
 
 import com.analyzer.approachHelper.domain.Approach;
 import com.analyzer.approachHelper.exception.ApproachNotFoundException;

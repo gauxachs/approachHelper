@@ -1,9 +1,10 @@
-package com.analyzer.approachHelper.service;
+package com.analyzer.approachHelper.service.product;
 
 import com.analyzer.approachHelper.domain.Product;
 import com.analyzer.approachHelper.exception.ProductNotFoundException;
 import com.analyzer.approachHelper.repository.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -21,6 +22,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public Product createProduct(String description) {
         return productRepository.save(new Product(description));
     }
