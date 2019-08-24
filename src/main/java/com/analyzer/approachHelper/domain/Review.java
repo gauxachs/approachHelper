@@ -3,6 +3,7 @@ package com.analyzer.approachHelper.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Review {
@@ -18,6 +19,8 @@ public class Review {
     @ManyToOne
     private Product product;
 
+    private LocalDateTime date;
+
     public Review() {
         //empty constructor
     }
@@ -25,6 +28,7 @@ public class Review {
     public Review(String score, Product product) {
         this.score = score;
         this.product = product;
+        this.date = LocalDateTime.now();
     }
 
     public String getId() {
@@ -37,5 +41,9 @@ public class Review {
 
     public Product getProduct() {
         return product;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
     }
 }

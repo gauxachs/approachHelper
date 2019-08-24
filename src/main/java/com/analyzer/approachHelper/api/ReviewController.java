@@ -26,8 +26,7 @@ public class ReviewController {
         var reviews = reviewService.getReviewsByProductId(productId);
 
         return reviews.stream()
-                .map(review -> new ReviewResponse(review.getProduct().getId(), review.getScore()))
+                .map(review -> new ReviewResponse(review.getProduct().getId(), review.getScore(), review.getDate()))
                 .collect(toList());
     }
-    
 }

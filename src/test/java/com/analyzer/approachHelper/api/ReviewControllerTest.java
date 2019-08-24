@@ -15,6 +15,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDateTime;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -30,6 +32,7 @@ public class ReviewControllerTest {
 
     private static final String PRODUCT_ID = "PRODUCT_ID";
     private static final String SCORE = "100";
+    private static final LocalDateTime REVIEW_DATE = LocalDateTime.now();
 
     @Autowired
     private MockMvc mvc;
@@ -41,6 +44,7 @@ public class ReviewControllerTest {
     public void setUp() {
         var review = mock(Review.class);
         when(review.getScore()).thenReturn(SCORE);
+        when(review.getDate()).thenReturn(REVIEW_DATE);
 
         var product = mock(Product.class);
         when(product.getId()).thenReturn(PRODUCT_ID);
@@ -60,9 +64,10 @@ public class ReviewControllerTest {
     public void testGetReviewsByProductId() throws Exception {
         mvc.perform(get("/reviews")
                 .param("productId", PRODUCT_ID))
-                .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(jsonPath("[0].score").value(SCORE));
-    }
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("[0].score").value(SCORE))
+                .andExpect(jsonPath("[0].date").value(REVIEW_DATE.toString()));
 
+    }
 }
